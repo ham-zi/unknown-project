@@ -127,8 +127,9 @@ public class BoardService {
 	return board;
 	}
 
-	private void increaseViews(Long BoardNo) {
-		boardMapper.increaseViews(BoardNo);
+	private void increaseViews(Long boardNo) {
+		existsBoard(boardNo);
+		boardMapper.increaseViews(boardNo);
 	}
 	
 

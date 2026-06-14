@@ -6,6 +6,7 @@ import com.one.unknown.user.model.dto.UnknownDto;
 
 @Mapper
 public interface UnknownMapper {
-	public int getUserName(UnknownDto dto);
+	int getUserName(UnknownDto dto);
+	String findByUserName(String refUser);
 
 }

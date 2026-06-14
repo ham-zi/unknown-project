@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.one.unknown.like.model.dao.LikeMapper;
 import com.one.unknown.like.model.dto.LikeDto;
+import com.one.unknown.user.model.service.UnknownService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class LikeService {
 	private final LikeMapper likeMapper;
+	private final UnknownService unknownService;
+	
 	private void insertLike(LikeDto likeDto) {
 		likeMapper.insertLike(likeDto);
 	}
@@ -30,6 +33,7 @@ public class LikeService {
 	
 	@Transactional
 	public int requestLike (LikeDto likeDto) {
+		unknownService.hasUserName(likeDto.getRefUser());
 		if(countByUserBno(likeDto) == 1) {
 			deleteLike(likeDto);
 			return  countByBno(likeDto.getRefBno());
@@ -38,5 +42,7 @@ public class LikeService {
 			return countByBno(likeDto.getRefBno());
 		}
 	}
+	
+
 	
 }

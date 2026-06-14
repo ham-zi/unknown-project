@@ -27,5 +27,15 @@ public class UnknownService {
 		
 		return dto.getUserName();
 	}
+	
+	private String findByUserName(String userName) {
+		return userMapper.findByUserName(userName);
+	}
+	
+	public void hasUserName(String userName) {
+		if(findByUserName(userName) == null) {
+			throw new UserNotFoundException("존재하지 않는 아이디입니다.");
+		}
+	}
 
 }

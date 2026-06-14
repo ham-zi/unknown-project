@@ -5,21 +5,30 @@
   
   <mapper namespace="com.api.one.unknown.user.model.dao.UnknownMapper">
   	
-<insert id="getUserName">
-    <selectKey keyProperty="userName" resultType="string" order="BEFORE">
-        SELECT 
-               '익명' || SEQ_UNN.NEXTVAL
-          FROM 
-               DUAL
-    </selectKey>
-    INSERT
-      INTO
-           UNKNOWN_USER
-    VALUES 
-           (
-            #{userName}
-            )
-</insert>
+	<insert id="getUserName">
+	    <selectKey keyProperty="userName" resultType="string" order="BEFORE">
+	        SELECT 
+	               '익명' || SEQ_UNN.NEXTVAL
+	          FROM 
+	               DUAL
+	    </selectKey>
+	    INSERT
+	      INTO
+	           UNKNOWN_USER
+	    VALUES 
+	           (
+	            #{userName}
+	            )
+	</insert>
+	
+	<select id="findByUserName" resultType="string">
+		SELECT
+		       UNKNOWN_USER
+		  FROM
+		       UNKNOWN_USER
+		 WHERE
+		       UNKNOWN_USER = #{userName}
+	</select>
   	
   
   
