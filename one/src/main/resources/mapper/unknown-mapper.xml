@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.api.one.unknown.user.model.dao.UnknownMapper">
+  	
+<insert id="getUserName">
+    <selectKey keyProperty="userName" resultType="string" order="BEFORE">
+        SELECT 
+               '익명' || SEQ_UNN.NEXTVAL
+          FROM 
+               DUAL
+    </selectKey>
+    INSERT
+      INTO
+           UNKNOWN_USER
+    VALUES 
+           (
+            #{userName}
+            )
+</insert>
+  	
+  
+  
+  
+  </mapper>
