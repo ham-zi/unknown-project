@@ -41,6 +41,9 @@ public class BoardService {
 			throw new DatabaseOperationException("게시글 작성 실패하였습니다. 잠시 후에 다시 시도해주세요.");
 		}
 		//파일 저장
+		if (files == null || files.isEmpty()) {
+		    return;
+		}
 		fileService.saveFiles(files, b.getBoardNo());
 	}
 	
@@ -55,6 +58,19 @@ public class BoardService {
 		}
 		return boards;
 	}
+	
+	
+	//관리자 게시글 전체 조회 / 대표이미지 첨부
+	public List<BoardDto> findAllAsAdmin(int page) {
+		RowBounds rb = new RowBounds((page-1)*5,5); //페이징처리 나중에 바꾸기 앞단이랑 맞추기
+		List<BoardDto> boards = boardMapper.findAllAsAdmin(rb);
+		for(BoardDto b : boards) {
+			String fileUrl = fileService.findMainFile(b.getBoardNo());
+			b.setFileUrl(fileUrl);
+		}
+		return boards;
+	}
+	
 
 	
 	//게시글 업데이트
@@ -75,11 +91,13 @@ public class BoardService {
 		fileService.deleteFiles(board.getBoardNo());
 		
 		//파일이 존재하면 파일인서트
-		if(files.isEmpty()) {
-			return;
+		if (files == null || files.isEmpty()) {
+		    return;
 		}
 		//파일 저장
-		fileService.saveFiles(files, board.getBoardNo());
+		if(!files.isEmpty()) {
+			fileService.saveFiles(files, board.getBoardNo());
+		}
 	}
 	
 	//게시글 삭제
@@ -90,6 +108,20 @@ public class BoardService {
 		checkMatchesPassword(board.getPassword(), b.getPassword());
 		
 		int result = boardMapper.deleteBoard(board);
+		if(result != 1) {
+			throw new RequestFailBoardException("게시글 삭제에 실패했습니다.");
+		}
+	}
+	
+	//게시글 삭제
+	@Transactional
+	public void deleteBoardAsAdmin(BoardDto board) {
+		BoardDto b = existsBoard(board.getBoardNo());
+		if(b == null) {
+			throw new RequestFailBoardException("존재하지 않는 게시판입니다.");
+		}
+		
+		int result = boardMapper.deleteBoardAsAdmin(board);
 		if(result != 1) {
 			throw new RequestFailBoardException("게시글 삭제에 실패했습니다.");
 		}

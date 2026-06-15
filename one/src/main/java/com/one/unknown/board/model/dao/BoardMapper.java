@@ -12,9 +12,10 @@ import com.one.unknown.board.model.vo.Board;
 public interface BoardMapper {
 	int saveBoard(Board board);
 	List<BoardDto>findAll(RowBounds rb);
-	List<BoardDto>findAllByAdmin(RowBounds rb);
+	List<BoardDto>findAllAsAdmin(RowBounds rb);
 	int updateBoard(BoardDto board);
 	int deleteBoard(BoardDto board);
+	int deleteBoardAsAdmin(BoardDto board);
 	BoardDto findByBno(Long boardNo);
 	int increaseViews(Long boardNo);
 }

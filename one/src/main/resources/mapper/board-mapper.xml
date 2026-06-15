@@ -68,7 +68,7 @@
   	</select>
   	
   	
-  	  	<select id="findAllByAdmin" resultType="BoardDto">
+  	  	<select id="findAllAsAdmin" resultType="BoardDto">
   		<include refid="boardColumn"/>
   	     GROUP
   	        BY
@@ -87,10 +87,25 @@
   		 WHERE
   		       BOARD_NO = #{boardNo}
   		   AND
+  		       PASSWORD = #{password}
+  		   AND
   		       STATUS = 'Y'
   	</update>
   	
   	<update id="deleteBoard">
+  		UPDATE
+  		       UNKNOWN_BOARD
+  		   SET
+  		       STATUS = 'N'
+  		 WHERE
+  		       BOARD_NO = #{boardNo}
+   		   AND
+  		       PASSWORD = #{password}
+  		   AND
+  		       STATUS = 'Y'
+  	</update>
+  	
+  	<update id="deleteBoardAsAdmin">
   		UPDATE
   		       UNKNOWN_BOARD
   		   SET
