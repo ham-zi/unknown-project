@@ -121,7 +121,7 @@ public class BoardService {
 	
 	//파일 조회
 	List<FileDto>files =fileService.findByBno(boardNo);
-	board.setFiles(files);
+	board.setImages(files);
 	
 	
 	return board;

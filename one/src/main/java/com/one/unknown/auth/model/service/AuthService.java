@@ -31,7 +31,7 @@ public class AuthService {
 	public LoginResponse login(@Valid LoginDto lr) {
 		
 //		System.out.println(ps.encode("1234"));
-//		log.info("asdf{}",ps.encode("1234"));
+		//log.info("asdf{}",ps.encode("1234"));
 		Authentication auth = null;
 		try {
 			auth = authenticationManger.authenticate(new UsernamePasswordAuthenticationToken(lr.getUserId(), lr.getUserPwd()));

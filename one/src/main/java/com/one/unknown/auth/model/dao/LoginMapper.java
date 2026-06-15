@@ -17,7 +17,7 @@ public interface LoginMapper {
 			   , ROLE
 			   , STATUS
 	      FROM
-			     ONE_USER
+			     UNKNOWN_ADMIN
 		 WHERE	     
 			 	STATUS = 'Y'
 		   AND 

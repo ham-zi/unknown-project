@@ -28,6 +28,6 @@ public class BoardDto {
 	private int views;
 	private int likes;
 	private String fileUrl;
-	private List<FileDto> files;
+	private List<FileDto> images;
 	
 }
