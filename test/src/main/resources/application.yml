@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: test
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: C##DS
+    password: DS
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+server:
+  port: 8081

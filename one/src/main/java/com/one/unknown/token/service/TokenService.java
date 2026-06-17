@@ -60,4 +60,8 @@ public class TokenService {
 	private void deleteToken(String refreshToken) {
 		tokenMapper.deleteToken(refreshToken);
 	}
+	
+	public void logout(String userId) {
+		tokenMapper.deleteToken(userId);
+	}
 }

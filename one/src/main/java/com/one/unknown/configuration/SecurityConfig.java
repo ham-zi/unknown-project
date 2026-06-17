@@ -41,7 +41,7 @@ public class SecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable)
 				.cors(Customizer.withDefaults())
 				.authorizeHttpRequests(requests ->  {
-					requests.requestMatchers(HttpMethod.GET, "/api/boards", "/uploads/**", "/api/boards/**").permitAll();
+					requests.requestMatchers(HttpMethod.GET, "/api/boards", "/uploads/**", "/api/boards/**", "/api/auth/**").permitAll();
 					requests.requestMatchers(HttpMethod.PATCH, "/api/boards").permitAll();
 					requests.requestMatchers(HttpMethod.DELETE, "/api/boards").permitAll();
 					requests.requestMatchers(HttpMethod.POST, "/api/unknown", "/api/auth/login", "/api/boards/**","/api/likes").permitAll();

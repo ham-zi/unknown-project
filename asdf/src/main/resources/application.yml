@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: asdf
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: C##DS
+    password: DS
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8081

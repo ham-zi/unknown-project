@@ -46,7 +46,7 @@
   		     , B.CREATE_DATE
   		     , B.PASSWORD
   		     , B.VIEWS
-  		     , COUNT(L.REF_BNO) AS LIKE_COUNT
+  		     , COUNT(L.REF_BNO) AS LIKES
   	      FROM
   	           UNKNOWN_BOARD B
   	      LEFT

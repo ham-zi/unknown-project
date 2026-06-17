@@ -16,6 +16,6 @@ public interface TokenMapper {
 	@Select("SELECT TOKEN, REF_USER, EXPIRATION FROM UNKNOWN_TOKEN WHERE TOKEN = #{token}")
 	RefreshToken findByToken(String token);
 	
-	@Delete("DELETE FROM UNKNOWN_TOKEN WHERE TOKEN = #{refreshToken}")
+	@Delete("DELETE FROM UNKNOWN_TOKEN WHERE REF_USER = #{userId}")
 	void deleteToken(String refreshToken);
 }
